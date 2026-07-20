@@ -56,22 +56,34 @@ No frameworks, build tools, or external dependencies — it runs as a single sel
 
 ## 🚀 Getting Started
 
-Since this is a single static HTML file with no dependencies, there's nothing to install.
+### 1. Clone the Repository
 
 ```bash
-# Clone the repository
-git clone https://github.com/<your-username>/Go-Back-N-Protocol-Simulator-CN.git
+git clone https://github.com/Brijeshkumar452/Go-Back-N-Protocol-Simulator-CN.git
 cd Go-Back-N-Protocol-Simulator-CN
-
-# Just open it in a browser
-open Go_back_N_Protocol.html   # macOS
-# or double-click the file, or drag it into any modern browser
 ```
 
-Or host it for free with **GitHub Pages**:
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**.
-3. Select the branch and root folder, save, and share the generated link.
+### 2. Open the Project
+
+This project is a standalone HTML application. No installation, build tools, or external dependencies are required.
+
+Open the `Go_Back_N_Protocol.html` file in any modern web browser, such as:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Brave
+
+You can either:
+- Double-click the HTML file, or
+- Drag and drop it into your browser, or
+- Right-click the file and choose **Open with** → Your preferred browser.
+
+### 3. Run the Simulation
+
+- Configure the simulation parameters.
+- Click **Start** to begin the simulation.
+- Observe packet transmission, acknowledgements, sliding window movement, timeouts, and retransmissions in real time.
 
 ---
 
