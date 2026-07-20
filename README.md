@@ -9,9 +9,6 @@ An interactive, browser-based visualization of the **Go-Back-N (GBN) Automatic R
 
 Developed during the **PS-1 Internship at The LNM Institute of Information Technology (LNMIIT), Jaipur**.
 
-🔗 **Live Demo:** *(add your GitHub Pages / hosted link here)*
-📸 **Screenshot:** *(add a screenshot or GIF of the simulation here)*
-
 ---
 
 ## 📖 Overview
