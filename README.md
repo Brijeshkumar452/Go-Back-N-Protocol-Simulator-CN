@@ -5,22 +5,18 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Interactive visualization of the **Go-Back-N Automatic Repeat Request (ARQ)** protocol developed during the **PS-1 Internship at The LNM Institute of Information Technology (LNMIIT), Jaipur**.
-# Go-Back-N-Protocol-Simulator-CN
-Interactive Go-Back-N ARQ Protocol Simulator developed using HTML, CSS, and JavaScript during PS-1 Internship at LNMIIT.
+An interactive, browser-based visualization of the **Go-Back-N (GBN) Automatic Repeat reQuest (ARQ) protocol**, built to show sliding-window flow control, cumulative acknowledgements, timeouts, and retransmissions actually happening — rather than just being described in a textbook.
 
-
-# Go-Back-N Protocol — Interactive Visualizer
-
-An interactive, browser-based simulation of the **Go-Back-N (GBN) ARQ protocol**, built to help visualize how sliding-window flow control, cumulative acknowledgements, timeouts, and retransmissions work in computer networks. Built as part of a B.Tech internship/academic project.
+Developed during the **PS-1 Internship at The LNM Institute of Information Technology (LNMIIT), Jaipur**.
 
 🔗 **Live Demo:** *(add your GitHub Pages / hosted link here)*
 📸 **Screenshot:** *(add a screenshot or GIF of the simulation here)*
 
+---
 
-# 📖 Overview
+## 📖 Overview
 
-Go-Back-N is a sliding-window based Automatic Repeat reQuest (ARQ) protocol used for reliable data transfer over unreliable channels. This project turns the textbook algorithm into a live, clickable animation so that sender/receiver state, packet flight, acknowledgements, and timeout-driven retransmissions can actually be *watched* happening, rather than just read about.
+Go-Back-N is a sliding-window ARQ protocol used for reliable data transfer over unreliable channels. This project turns the algorithm into a live, clickable animation so that sender/receiver state, packet flight, acknowledgements, and timeout-driven retransmissions can be watched in real time.
 
 The simulation lets you:
 - Send new data packets from the sender within a fixed window size.
@@ -30,22 +26,24 @@ The simulation lets you:
 - Observe the sender's timeout timer and the Go-Back-N retransmission behaviour when a loss occurs.
 - Speed up, slow down, pause, and reset the simulation at any point.
 
-# ✨ Features
+---
+
+## ✨ Features
 
 | Feature | Description |
 |---|---|
-| **Sliding Window Sender** | Sender window size = 5; enforces the "cannot send beyond `base + N`" rule. |
-| **Cumulative Acknowledgement** | Receiver only accepts in-order packets and sends a cumulative ACK for the highest in-order packet received. |
-| **Timeout & Retransmission** | A single timer per window; on timeout, **all** unacknowledged packets in the window are retransmitted (true Go-Back-N behaviour, not selective repeat). |
-| **Packet Loss Simulation** | Click "Pause," select any in-flight packet/ACK, and click "Kill Packet/Ack" to simulate loss on the channel. |
-| **Speed Control** | Speed up (up to 8×) or slow down (down to 0.25×) the animation to study fast or slow-motion behaviour. |
-| **Live Event Log** | A running, timestamped log of every sender-side (S) and receiver-side (R) event — sends, ACKs, discards, timeouts, retransmits. |
+| **Sliding Window Sender** | Window size = 5; sender cannot transmit beyond `base + windowSize`. |
+| **Cumulative Acknowledgement** | Receiver accepts only in-order packets and sends a cumulative ACK for the highest in-order packet received. |
+| **Timeout & Retransmission** | A single timer per window; on timeout, **all** unacknowledged packets in the window are retransmitted — true Go-Back-N behaviour, not Selective Repeat. |
+| **Packet Loss Simulation** | Pause the simulation, select any in-flight packet/ACK, and click "Kill Packet/Ack" to simulate loss on the channel. |
+| **Speed Control** | Speed up (to 8×) or slow down (to 0.25×) to study fast or slow-motion behaviour. |
+| **Live Event Log** | A running log of every sender-side (S) and receiver-side (R) event — sends, ACKs, discards, timeouts, retransmits. |
 | **Colour-Coded Slots & Packets** | Distinct colours for unsent, sent, acknowledged, received, and lost packets, with a legend for quick reference. |
 | **Canvas-Based Animation** | Packets are drawn and animated frame-by-frame on an HTML5 `<canvas>` using `requestAnimationFrame`. |
 
+---
 
-
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 - **HTML5** — structure and semantic layout
 - **CSS3** — styling, layout (flexbox), and the slot/legend UI
@@ -54,30 +52,36 @@ The simulation lets you:
 
 No frameworks, build tools, or external dependencies — it runs as a single self-contained HTML file.
 
+---
 
-# 🚀 Getting Started
+## 🚀 Getting Started
 
 Since this is a single static HTML file with no dependencies, there's nothing to install.
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/go-back-n-protocol.git
-cd go-back-n-protocol
+git clone https://github.com/<your-username>/Go-Back-N-Protocol-Simulator-CN.git
+cd Go-Back-N-Protocol-Simulator-CN
 
 # Just open it in a browser
 open Go_back_N_Protocol.html   # macOS
 # or double-click the file, or drag it into any modern browser
 ```
 
+Or host it for free with **GitHub Pages**:
+1. Push this repo to GitHub.
+2. Go to **Settings → Pages**.
+3. Select the branch and root folder, save, and share the generated link.
+
 ---
 
-# 🎮 How to Use
+## 🎮 How to Use
 
 | Control | Action |
 |---|---|
 | **Send New** | Sends the next data packet, if the window isn't full. |
 | **Pause / Resume** | Freezes the animation so you can click and select an in-flight packet/ACK. |
-| **Kill Packet/Ack** | Simulates loss of the currently selected packet/ACK (only enabled while paused and something is selected). |
+| **Kill Packet/Ack** | Simulates loss of the currently selected packet/ACK (enabled only while paused, with something selected). |
 | **Faster / Slower** | Adjusts simulation speed between 0.25× and 8×. |
 | **Reset** | Clears all state and restarts the simulation from scratch. |
 
@@ -93,14 +97,14 @@ open Go_back_N_Protocol.html   # macOS
 
 ---
 
-# 🧠 How It Works (Under the Hood)
+## 🧠 How It Works (Under the Hood)
 
 - **State (`mkWorld`)** — a single world object tracks `base`, `nextseqnum`, `expectedseqnum`, per-slot status arrays, in-flight packets, and per-slot timers.
 - **Animation loop (`loop` → `tick`)** — driven by `requestAnimationFrame`; on every frame it advances in-flight packets, resolves arrivals, and counts down timers.
-- **`onDataArrived`** — implements the receiver logic: accepts only the exact expected sequence number, discards anything else and re-sends the last cumulative ACK.
-- **`onAckArrived`** — implements the sender logic: on receiving a cumulative ACK, slides `base` forward and restarts the timer for the next unacknowledged packet.
-- **`onTimeout`** — the heart of Go-Back-N: when the timer for the base packet expires, **every** unacknowledged packet in the current window is retransmitted (not just the lost one).
-- **Rendering (`refreshSlots`, `drawCanvas`)** — pure functions that redraw the sender/receiver slot grids and the animated packets on the canvas from the current world state on every frame.
+- **`onDataArrived`** — receiver logic: accepts only the exact expected sequence number, discards anything else, and re-sends the last cumulative ACK.
+- **`onAckArrived`** — sender logic: on receiving a cumulative ACK, slides `base` forward and restarts the timer for the next unacknowledged packet.
+- **`onTimeout`** — the heart of Go-Back-N: when the timer for the base packet expires, **every** unacknowledged packet in the current window is retransmitted.
+- **Rendering (`refreshSlots`, `drawCanvas`)** — redraws the sender/receiver slot grids and animated packets on the canvas from the current world state every frame.
 
 ---
 
@@ -108,19 +112,19 @@ open Go_back_N_Protocol.html   # macOS
 
 - **Correctly models true Go-Back-N behaviour** — a single cumulative timer and full-window retransmission on timeout, which is what differentiates GBN from Selective Repeat.
 - **Fully interactive loss simulation** — unlike static diagrams, users can inject real packet/ACK loss and watch the protocol self-correct.
-- **Zero dependencies** — a single HTML file with inline CSS/JS, so it's portable, easy to host, and easy to read/study end-to-end.
-- **Clear visual feedback** — colour-coded states, a timer progress bar per slot, and a running text log make it easy to correlate what's happening on screen with the underlying protocol events.
-- **Adjustable simulation speed** — useful both for quick demos (fast) and for closely studying edge cases like timeouts (slow).
+- **Zero dependencies** — a single HTML file with inline CSS/JS, so it's portable, easy to host, and easy to read end-to-end.
+- **Clear visual feedback** — colour-coded states, a timer progress bar per slot, and a running text log make it easy to correlate what's on screen with the underlying protocol events.
+- **Adjustable simulation speed** — useful both for quick demos (fast) and closely studying edge cases like timeouts (slow).
 
 ---
 
 ## ⚠️ Limitations
 
 - **Fixed configuration** — window size (5), total sequence slots (20), and timer durations are hardcoded constants rather than user-configurable inputs.
-- **Single sender-receiver pair** — no support for multiple simultaneous senders/receivers or a shared/contended channel.
-- **No corruption simulation** — the project simulates packet *loss* but not bit-level *corruption* (e.g., checksum failures), which is also part of real ARQ protocols.
-- **No selective repeat comparison mode** — since GBN and Selective Repeat are often taught together, a side-by-side comparison isn't currently available.
-- **Not responsive for very small (mobile) screens** — the slot grid and canvas use fixed pixel widths, so layout can overflow on narrow viewports.
+- **Single sender–receiver pair** — no support for multiple simultaneous senders/receivers or a shared/contended channel.
+- **No corruption simulation** — models packet *loss* but not bit-level *corruption* (e.g., checksum failures), which is also part of real ARQ protocols.
+- **No Selective Repeat comparison mode** — since GBN and Selective Repeat are often taught together, a side-by-side comparison isn't currently available.
+- **Not responsive on very small (mobile) screens** — the slot grid and canvas use fixed pixel widths, so layout can overflow on narrow viewports.
 - **No persistence** — the log and simulation state reset on page refresh; there's no way to export or save a run.
 - **Educational simplification** — real-world factors like variable RTT, bandwidth-delay product, and congestion control are intentionally left out to keep the focus on the core ARQ mechanism.
 
@@ -139,7 +143,7 @@ open Go_back_N_Protocol.html   # macOS
 
 ## 📚 What I Learned
 
-This project was built to strengthen my understanding of core Computer Networks concepts as part of my B.Tech coursework/internship, including:
+This project was built to strengthen my understanding of core Computer Networks concepts during my PS-1 internship, including:
 - Sliding window flow control and how window size affects throughput.
 - The difference between cumulative acknowledgement (GBN) and per-packet acknowledgement schemes.
 - Timer-based retransmission strategies and their trade-offs.
@@ -165,4 +169,4 @@ This project is open-source and available under the [MIT License](LICENSE). Feel
 **Brijesh Kumar Koiri**
 B.Tech Computer Science & Engineering (Artificial Intelligence)
 JK Lakshmipat University
-PS-1 Internship-LNMIIT Jaipur
+PS-1 Internship — LNMIIT, Jaipur
