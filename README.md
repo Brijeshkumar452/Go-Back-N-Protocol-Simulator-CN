@@ -170,12 +170,6 @@ Inspired by classic Go-Back-N protocol animations used in networking courses (e.
 
 ---
 
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE). Feel free to fork, study, and build on it.
-
----
-
 ## 👤 Author
 
 **Brijesh Kumar Koiri**
